@@ -2,7 +2,7 @@
   "include": ["src", "types"],
   "compilerOptions": {
     "module": "CommonJS",
-    "outDir": "./src/dist",
+    "outDir": "./public",
     "target": "esnext",
     "moduleResolution": "node",
     "jsx": "preserve",
