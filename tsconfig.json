@@ -1,7 +1,7 @@
 {
   "include": ["src", "types"],
   "compilerOptions": {
-    "module": "ES6",
+    "module": "ESNext",
     "outDir": "./public/dist",
     "target": "esnext",
     "moduleResolution": "node",
