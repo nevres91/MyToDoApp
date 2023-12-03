@@ -1,6 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const uuid_1 = require("uuid");
+import { v4 as uuidV4 } from 'uuid';
 const input = document.querySelector('.form-control');
 const form = document.querySelector('.form');
 const list = document.querySelector('.list');
@@ -12,7 +10,7 @@ form?.addEventListener('submit', (e) => {
         return;
     }
     const newTask = {
-        id: (0, uuid_1.v4)(),
+        id: uuidV4(),
         input: input.value,
         isChecked: false,
     };
