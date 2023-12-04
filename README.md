@@ -1,6 +1,6 @@
 # New Project
 
-#A simple ToDo app as my first TypeScript project
+A simple ToDo app as my first TypeScript project
 
 ## DEMO
 https://master--silly-licorice-cfef04.netlify.app/
