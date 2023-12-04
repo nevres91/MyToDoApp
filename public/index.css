@@ -18,7 +18,7 @@ h1 {
 
 body {
   background: url('./img/1.jpg') no-repeat center center/cover;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
