@@ -1,14 +1,53 @@
 import { v4 as uuidV4 } from 'uuid';
 
 type List = {
-  id: string;
+  // id: ReturnType<typeof uuidV4>; // also works
+  id: string
   input: string;
   isChecked: boolean;
+  date?: {
+    dateCreated: Date,
+    dateCompleted: Date
+  }
 };
-const input = document.querySelector<HTMLInputElement>('.form-control');
-const form = document.querySelector<HTMLFormElement>('.form');
-const list = document.querySelector<HTMLUListElement>('.list');
-const tasks: List[] = loadTasks();
+
+// enums
+const returnSomeDataFromUnknownSource = () => {
+  const random = Math.random();
+
+  if (random < 0.3) {
+    return random;
+  }
+  if (random < 0.) {
+    return `${random} - string`;
+  }
+    return new Date();
+}
+
+type UserInput = string | number | Date;
+
+const userInputTest: UserInput = returnSomeDataFromUnknownSource();
+
+function doSomethingWithUserInput(userInput: UserInput) {
+  if (typeof userInput === "number") {
+    console.log(userInput)
+  } else {
+    console.log(userInput)
+  }
+}
+
+enum MyDomElements {
+  FormControl = '.form-control',
+  Form = '.form',
+  List = '.list',
+  Check = '.check'
+}
+
+const input = document.querySelector<HTMLInputElement>(MyDomElements.FormControl);
+const form = document.querySelector<HTMLFormElement>(MyDomElements.Form);
+const list = document.querySelector<HTMLUListElement>(MyDomElements.List);
+
+const tasks = loadTasks();
 tasks.forEach(addTask);
 
 form?.addEventListener('submit', (e) => {
@@ -28,6 +67,15 @@ form?.addEventListener('submit', (e) => {
 });
 
 function addTask(task: List) {
+  const startDate = task.date?.dateCreated
+  // ovo dvoje je isto
+  if (startDate) {
+    console.log(startDate)
+  }
+  if (task.date) {
+    const startDate = task.date.dateCreated
+  }
+  
   const listItem = document.createElement('li');
   listItem.className = 'list-group-item';
   listItem.innerHTML = `
@@ -59,7 +107,7 @@ function addTask(task: List) {
 </button>
   `;
   list?.append(listItem);
-  const checkbox = listItem.querySelector('.check') as HTMLInputElement;
+  const checkbox = listItem.querySelector(MyDomElements.Check) as HTMLInputElement;
   checkbox?.addEventListener('change', () => {
     task.isChecked = checkbox.checked;
     saveTasks();
